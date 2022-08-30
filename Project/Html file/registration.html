@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Signup Form </title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="registration.scss">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="registration.js">
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope) {
+        });
+    </script>
+</head>
+<body ng-app="MyApp" ng-controller="MyController">
+<div class="container">
+    <div class="main">
+        <form method="Post" action="registration.php"></form>
+        <form name="myForm" class="form" ng-submit="myForm.$valid" nonvalidate autocomplete="off">
+            <h2>Signup form</h2>
+            <br>
+            <div class="form-group field">
+                <label>Name :</label>
+                <label for="name"></label><input type="text" name="name" class="form-control" id="name" ng-model="name" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                <span style="color:Red" ng-show="myForm.name.$error.required"> Required! </span>
+                <span style="color:Red" ng-show="myForm.name.$dirty&&myForm.name.$error.pattern">Invalid Email</span>
+                <br><br>
+            </div>
+            <div class="form-group field">
+                <label>Email :</label>
+                <label for="email"></label><input type="email" name="email" class="form-control" id="email" ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+                <span style="color:Red" ng-show="myForm.email.$error.required"> Required! </span>
+                <span style="color:Red" ng-show="myForm.email.$dirty&&myForm.email.$error.pattern">Invalid Email</span>
+                <br><br>
+            </div>
+
+            <div class="form-group field">
+                <label>Password :&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <label>
+                    <input type="password" name="password" class="form-control" ng-model="password" ng-pattern="/^[0-9]{1,5}$/"  required />
+                </label>
+                <span style="color:Red" ng-show="myForm.password.$error.required"> Required! </span>
+                <span style="color:Red" ng-show="myForm.password.$dirty&&myForm.password.$error.pattern">Only Numbers Allowed, Maximum 5 Characters</span><br><br>
+            </div>
+            <div class="form-group field">
+                <label>Confirm password:&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <label>
+                    <input type="password" name="cpassword" class="form-control" ng-model="cpassword" ng-pattern="/^[0-9]{1,5}$/"  required />
+                </label>
+                <span style="color:Red" ng-show="myForm.cpassword.$error.required"> Required! </span>
+                <span style="color:Red" ng-show="myForm.cpassword.$dirty&&myForm.cpassword.$error.pattern">Only Numbers Allowed, Maximum 5 Characters</span><br><br>
+            </div>
+            <button  name="signup" id="signup"  onClick="location.href='login.html'" ng-disabled=myForm.email.$error.required||myForm.email.$dirty&&myForm.email.$error.pattern||myForm.password.$error.required||myForm.password.$dirty&&myForm.password.$error.pattern||myForm.cpassword.$error.required||myForm.cpassword.$dirty&&myForm.cpassword.$error.pattern>signup</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
